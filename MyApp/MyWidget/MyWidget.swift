@@ -8,10 +8,11 @@
 import WidgetKit
 import SwiftUI
 
+
 struct MyWidgetEntryView : View {
     @Environment(\.widgetFamily) var family
     
-    var entry: MyProvider.Entry
+    var entry: MyIntentProvider.Entry
     
     var body: some View {
         switch family {
@@ -47,13 +48,20 @@ struct MyWidget: Widget {
     let kind: String = "MyWidget"
     
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: MyProvider()) { entry in
+        IntentConfiguration(kind: kind, intent: CustomIntentIntent.self, provider: MyIntentProvider()) { entry in
             MyWidgetEntryView(entry: entry)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color.black.opacity(0.9))
-        }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .background(Color.black.opacity(0.9))
+        }.configurationDisplayName("Character Details")
+        .description("Displays a character's health and other details")
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
+//        StaticConfiguration(kind: kind, provider: MyProvider()) { entry in
+//            MyWidgetEntryView(entry: entry)
+//                .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                .background(Color.black.opacity(0.9))
+//        }
+//        .configurationDisplayName("My Widget")
+//        .description("This is an example widget.")
         
     }
 }

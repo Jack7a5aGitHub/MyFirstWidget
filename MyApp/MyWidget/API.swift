@@ -38,7 +38,7 @@ enum APIError: Error {
 }
 
 protocol APIRespositoryService {
-    func getData(completion: @escaping(Result<Response, APIError>) -> ())
+    func getData(term: String, completion: @escaping(Result<Response, APIError>) -> ())
 }
 
 class APIService: APIRespositoryService {
@@ -50,8 +50,10 @@ class APIService: APIRespositoryService {
     
     private init() {}
     
-    func getData(completion: @escaping (Result<Response, APIError>) -> ()) {
-        guard let url = URL(string: baseUrl) else {
+    func getData(term: String = "Best", completion: @escaping (Result<Response, APIError>) -> ()) {
+        var urlC = URLComponents(string: baseUrl)
+        urlC?.queryItems = [URLQueryItem(name: "term", value: term), URLQueryItem(name: "limit", value: "6")]
+        guard let url = urlC?.url else {
             completion(.failure(.invalidURL))
             return
         }

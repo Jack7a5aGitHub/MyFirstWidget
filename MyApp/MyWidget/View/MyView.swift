@@ -21,23 +21,23 @@ struct SmallRowView: View {
                     .fontWeight(.bold)
                     .lineLimit(1)
                     .foregroundColor(.white)
-                    .frame(width: .infinity, height: .infinity, alignment: .leading)
+                    .frame(width: .none, height: .none, alignment: .leading)
                 Text(countryName)
                     .foregroundColor(.gray)
                     .font(.system(size: 13))
-                    .frame(width: .infinity, height: .infinity, alignment: .leading)
+                    .frame(width: .none, height: .none, alignment: .leading)
                 
             }
             VStack(alignment: .leading, spacing: 2){
                 Text(artistName)
                     .lineLimit(1)
                     .foregroundColor(.white)
-                    .frame(width: .infinity, height: .infinity, alignment: .trailing)
+                    .frame(width: .none, height: .none, alignment: .trailing)
                 Text("-4.36")
                     .lineLimit(1)
                     .foregroundColor(.red)
                     .font(.system(size: 13))
-                    .frame(width: .infinity, height: .infinity, alignment: .trailing)
+                    .frame(width: .none, height: .none, alignment: .trailing)
             }
         }
     }
